@@ -264,3 +264,146 @@ function push(array, ...items) {
 let a = [];
 push(a, 1, 2, 3)
 ```
+## 7.7 函数重载
+
+# 八、TypeScript数组
+## 8.1 数组解构
+```
+let x: number;
+let y: number;
+let z: number;
+[x,y,z] = [0,1,2,3]
+```
+
+## 8.2 数组展开运算符
+```
+let two_arr: {}[] = ['1', 2, { a: '1', b: false }]
+let arr = [...two_arr, 3, 4, 5]
+```
+
+## 数组遍历
+```
+let colors: string[] = ['red', 'green', 'blue']
+for (let i of colors) {
+  console.log(i)
+}
+```
+
+# 九、TypeScript对象
+## 9.1 对象解构
+```
+let person = {
+  name: 'haha',
+  gender: 'Male'
+}
+let { name, gender } = person
+
+// Map
+type tPerson = {
+  test: string;
+  gender: string;
+}
+
+let person: tPerson = {
+  test: 'haha',
+  gender: 'Male'
+}
+let { test, gender } = person
+
+let a: Map<tPerson | number | string, number> = new Map([
+  [person, 1]
+])
+
+a.set({ test: '1', gender: '1' }, 1)
+a.set(1, 1)
+```
+
+## 9.2 对象展开运算符
+
+# 十、TypeScript接口
+
+++ 在面向对象语言中，接口是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类去实现。
+TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。 ++
+
+## 10.1 对象的形状
+```
+interface iPerson {
+  name: string;
+  age: number;
+}
+
+let haha: iPerson = {
+  name: 'test',
+  age: 22
+}
+```
+## 10.2 可选 | 只读属性
+```
+interface iPerson {
+  readonly country: string;
+  name: string;
+  age?: number;
+}
+```
+
+++ 只读属性用于限制只能在对象刚刚创建的时候修改其值。此外 TypeScript 还提供了 ReadonlyArray<T> 类型，它与 Array<T> 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改 ++
+```
+let a: number[] = [1, 2, 3, 4]
+let ro: ReadonlyArray<number> = a
+ro[0] = 12 // error
+ro.push(1) // error
+a = ro // error
+```
+
+# 十一、TypeScript类
+
+## 11.1 类的属性与方法
+```
+class Greeter {
+  // 静态属性
+  static cnm: string = 'Greeter';
+  // 成员属性
+  greeting: string;
+
+  // 构造函数
+  constructor(message: string) { 
+    this.greeting = message;
+  }
+
+  // 静态方法
+  static getCNM() {
+    return 'CNM is ' + this.cnm;
+  }
+
+  // 成员方法
+  greet() { 
+    return 'Hello, ' + this.greeting; 
+  }
+}
+
+let greeter = new Greeter('world');
+
+// 编译后
+"use strict";
+var Greeter = /** @class */ (function () {
+    // 构造函数 - 执行初始化操作
+    function Greeter(message) {
+        this.greeting = message;
+    }
+    // 静态方法
+    Greeter.getClassName = function () {
+        return "Class name is Greeter";
+    };
+    // 成员方法
+    Greeter.prototype.greet = function () {
+        return "Hello, " + this.greeting;
+    };
+    // 静态属性
+    Greeter.cname = "Greeter";
+    return Greeter;
+}());
+var greeter = new Greeter("world");
+```
+
+***js成员属性与静态属性，成员方法与静态方法有什么区别***
+
