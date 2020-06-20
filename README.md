@@ -407,3 +407,32 @@ var greeter = new Greeter("world");
 
 ***js成员属性与静态属性，成员方法与静态方法有什么区别***
 
+## 11.2 访问器
+
+在 TypeScript 中，我们可以通过 getter 和 setter 方法来实现数据的封装和有效性校验，防止出现异常数据。
+
+```
+let passcode = "Hello TypeScript";
+
+class Employee {
+  private _fullName: string;
+
+  get fullName(): string {
+    return this._fullName;
+  }
+
+  set fullName(newName: string) {
+    if (passcode && passcode == "Hello TypeScript") {
+      this._fullName = newName;
+    } else {
+      console.log("Error: Unauthorized update of employee!");
+    }
+  }
+}
+
+let employee = new Employee();
+employee.fullName = "Semlinker";
+if (employee._fullName) {
+  console.log(employee._fullName);
+}
+```
