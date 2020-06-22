@@ -436,3 +436,40 @@ if (employee._fullName) {
   console.log(employee._fullName);
 }
 ```
+## 11.3 类的继承
+```
+在 ts中，使用extends来实现继承
+
+class Animal {
+  name: string;
+
+  constructor(name: string) { 
+    this.name = name
+  }
+
+  move(distanceInMeters: number = 0) {
+    console.log(`${this.name} moved ${distanceInMeters} m.`)
+  }
+}
+
+class Snake extends Animal { 
+  constructor(name: string) { 
+    super(name);
+  }
+
+  move(distanceInMeters = 5) { 
+    console.log('Slithering ...');
+    super.move(distanceInMeters)
+  }
+}
+
+let sam = new Snake('Sammy the Python')
+
+sam.move()
+```
+
+## 11.4 ECMAScript 私有字段
+* 私有字段以 # 字符开头，有时我们称之为私有名称；
+* 每个私有字段名称都唯一地限定于其包含的类；
+* 不能在私有字段上使用 TypeScript 可访问性修饰符（如 public 或 private）；
+* 私有字段不能在包含的类之外访问，甚至不能被检测到。
