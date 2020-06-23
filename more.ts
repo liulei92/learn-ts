@@ -10,7 +10,7 @@ function sum(x: number, y: number): number {
 const sum2: (x: number, y: number) => number = sum
 const sum3: PlusType = sum
 
-// 联合类型
+// 联合类型 |
 type NameResolver = () => string
 type NameOrResolver = string | NameResolver
 function getName(n: NameOrResolver): string {
@@ -20,6 +20,8 @@ function getName(n: NameOrResolver): string {
     return n()
   }
 }
+
+// 交叉类型 &
 
 
 
