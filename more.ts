@@ -24,6 +24,7 @@ function getName(n: NameOrResolver): string {
 
 
 // type assertion 类型断言，只是告知 代码可以执行，但并不是改变原值的类型，此外 不可以断言为联合类型之外的类型
+// 断言 可以是 <>语法 也可是 as语法
 function getLenth(input: string | number): number {
   // input.length
 
@@ -36,7 +37,13 @@ function getLenth(input: string | number): number {
   // }
 
   // 同上
-  if ((<string>input).length) {
+  //   if ((<string>input).length) {
+  //     return (<string>input).length
+  //   } else {
+  //     return input.toString().length
+  //   }
+  //   同上
+  if ((input as string).length) {
     return (<string>input).length
   } else {
     return input.toString().length
