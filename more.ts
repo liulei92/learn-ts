@@ -50,5 +50,25 @@ function getLenth(input: string | number): number {
   }
 }
 
+// 高级用法
+// Partial<T> 的作用就是将某个类型里的属性全部变为可选项 ?
+// type Partial<T> = {
+//   [P in keyof T]?: T[P];
+// };
+
+interface Todo {
+  title: string;
+  description: string;
+}
+
+
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return { ...todo, ...fieldsToUpdate };
+}
+
+let kiki: Partial<Todo>= {
+    title: '1',
+    description: '2'
+}
 
 // jQuery
